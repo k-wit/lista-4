@@ -1,0 +1,53 @@
+﻿<Window x:Class="lista_4.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:lista_4"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="650">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ListView Name="ListPersons" Grid.Row="0" MouseDoubleClick="ListPersons_MouseDoubleClick">
+            <ListView.View>
+                <GridView AllowsColumnReorder="True">
+                    <GridView.Columns>
+                        <GridViewColumn  Header="Last name"
+                            DisplayMemberBinding="{Binding LastName}"/>
+                        <GridViewColumn Header="First name"
+                            DisplayMemberBinding="{Binding FirstName}" />
+                        <GridViewColumn Header="Date of birth"
+                            DisplayMemberBinding="{Binding BirthD, StringFormat='{}{0:dd.MM.yyyy}'}" />
+                        <GridViewColumn Header="Date of death"
+                            DisplayMemberBinding="{Binding DeathD, StringFormat='{}{0:dd.MM.yyyy}'}" />
+                        <GridViewColumn Header="Nationality"
+                            DisplayMemberBinding="{Binding Nationality}" />
+                        <GridViewColumn Header="Field"
+                            DisplayMemberBinding="{Binding Field}" />
+                        <GridViewColumn Header="Year"
+                            DisplayMemberBinding="{Binding Year}" />
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Width="128" Height="128" Source="{Binding Picture}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="New_Person" Grid.Row="1" Content="Add new person" Click="New_Person_Click"/>
+        <Button Name="SaveButton" HorizontalAlignment="Right" Height="22" VerticalAlignment="Top" Width="22" Click="SaveButton_Click">
+            <Image  Height="22" Width="22" Source="bin\excel.png"></Image>
+        </Button>
+        <Button x:Name="SQL_Connection" Grid.Row="2" Content="Connect with database"></Button>
+    </Grid>
+</Window>
