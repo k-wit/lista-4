@@ -5,11 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:lista_4"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="650">
+        Title="MainWindow" Height="600" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="8*"/>
-            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -45,9 +44,5 @@
             </ListView.View>
         </ListView>
         <Button x:Name="New_Person" Grid.Row="1" Content="Add new person" Click="New_Person_Click"/>
-        <Button Name="SaveButton" HorizontalAlignment="Right" Height="22" VerticalAlignment="Top" Width="22" Click="SaveButton_Click">
-            <Image  Height="22" Width="22" Source="bin\excel.png"></Image>
-        </Button>
-        <Button x:Name="SQL_Connection" Grid.Row="2" Content="Connect with database"></Button>
     </Grid>
 </Window>

@@ -78,7 +78,7 @@ namespace lista_4
             }
             set
             { // deserialize
-                if (value == null)
+                if (value == null || value.Length == 0)
                 {
                     Picture = null;
                 }
@@ -118,6 +118,18 @@ namespace lista_4
             this.Field = Field;
             this.Year = Year;
             this.Picture = Picture;
+        }
+
+        public Nobel_Prize_winner(DateTime BirthD, DateTime DeathD, string FirstName, string LastName, string Nationality, string Field, int Year, string Picture)
+        {
+            this.BirthD = BirthD;
+            this.DeathD = DeathD;
+            this.FirstName = FirstName;
+            this.LastName = LastName;
+            this.Nationality = Nationality;
+            this.Field = Field;
+            this.Year = Year;
+            this.LargeIconSerialized = Convert.FromBase64String(Picture);
         }
 
         public string Error

@@ -22,11 +22,11 @@ namespace lista_4
     public partial class NewWindow : Window
     {
         BitmapImage Picture;
-
+        Database baza;
 
         List<string> Nationalities
         {
-            get { return new List<string>() { "Polish", "German", "French", "English", "Czech" , "Danish" , "Greek", "Chinese" , "Hungarian" , "Italian" , "Slovak" , "Spanish" , "Swedish" ,"Swiss"}; }
+            get { return new List<string>() { " Austro-Hungarian",  "American", "Belgian","Canadian", "Polish", "German", "French", "Bengali", "British", "Luxembourgish", "Indian", "Irish", "Franco-Luxembourgish","Czech", "Russian", "Austrian", "Danish" , "Scottish", "Icelandic", "Norwegian", "Greek", "Dutch", "Chinese" , "Hungarian" , "Italian" , "Slovak" , "Spanish" , "Swedish" ,"Swiss"}; }
         }  
 
         List<string> Fields
@@ -40,9 +40,10 @@ namespace lista_4
             set;
         }
 
-        public NewWindow()
+        public NewWindow(Database baza)
         {
             InitializeComponent();
+            this.baza = baza;
             OtherInitialize();
             cmbNationality.ItemsSource = Nationalities;
             cmbField.ItemsSource = Fields;
@@ -52,7 +53,8 @@ namespace lista_4
         {
             ReturnPerson = (Nobel_Prize_winner)PersonForm.DataContext;
             if (ReturnPerson.cansave == true)
-            {               
+            {
+                baza.SavePerson(ReturnPerson);
                 this.Close();
             }
             else
@@ -66,13 +68,12 @@ namespace lista_4
         }
         
         void NewWindow_Closing(object sender, CancelEventArgs e)
-        { 
-            if (ReturnPerson==null)
+        {
+            if (ReturnPerson == null)
             {
                 e.Cancel = false;
                 return;
             }
-            ReturnPerson = (Nobel_Prize_winner)PersonForm.DataContext;
             if (ReturnPerson.cansave == false)
             {
                 e.Cancel = true;
@@ -82,7 +83,6 @@ namespace lista_4
             {
                 e.Cancel = false;
             }
-
         }
         private void BtnLoadFromFile_Click(object sender, RoutedEventArgs e)
         {
@@ -93,6 +93,7 @@ namespace lista_4
                 imgDynamic.Source = new BitmapImage(fileUri);
                 Picture = new BitmapImage(fileUri);
                 ReturnPerson = (Nobel_Prize_winner)PersonForm.DataContext;
+                ReturnPerson.Picture = Picture;
             }
         }
     }

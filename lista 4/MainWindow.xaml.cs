@@ -26,6 +26,7 @@ namespace lista_4
     {
 
         public List<Nobel_Prize_winner> NobelList = null;
+        Database baza = new Database();
 
         public MainWindow()
         {
@@ -41,7 +42,16 @@ namespace lista_4
             }
             catch { };
 
-            InitBinding();
+            DataTable dt = baza.readBase();
+            //ListPersons.ItemsSource = dt.DefaultView;
+            NobelList = new List<Nobel_Prize_winner>();
+            foreach (DataRow row in dt.Rows)
+            {
+                NobelList.Add(new Nobel_Prize_winner(Convert.ToDateTime(row["Date of Birth"]), Convert.ToDateTime(row["Date of Death"]), row["First Name"].ToString(), row["Last Name"].ToString(), row["Nationality"].ToString(), row["Field"].ToString(), Convert.ToInt32(row["Year"]), row["Picture"].ToString()));
+            }
+            ListPersons.ItemsSource = NobelList;
+
+            //InitBinding();
         }
 
         public void InitBinding()
@@ -68,7 +78,7 @@ namespace lista_4
 
         private void New_Person_Click(object sender, RoutedEventArgs e)
         {
-            NewWindow addPerson = new NewWindow();
+            NewWindow addPerson = new NewWindow(baza);
             Nobel_Prize_winner person = new Nobel_Prize_winner();
             addPerson.PersonForm.DataContext = person;
 
@@ -93,7 +103,7 @@ namespace lista_4
 
         private void ListPersons_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            NewWindow changePerson = new NewWindow();
+            NewWindow changePerson = new NewWindow(baza);
             changePerson.PersonForm.DataContext = ListPersons.SelectedItem;
             changePerson.ShowDialog();
         }

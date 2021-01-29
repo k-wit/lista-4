@@ -1,0 +1,17 @@
+﻿<Window x:Class="lista_4.Report"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:wfi="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
+        xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+        xmlns:wfr="clr-namespace:Microsoft.Reporting.WinForms;assembly=Microsoft.ReportViewer.WinForms"
+        xmlns:local="clr-namespace:lista_4"
+        mc:Ignorable="d"
+        Title="Report" Height="450" Width="800">
+    <Grid>
+        <wfi:WindowsFormsHost VerticalAlignment="Stretch" Name="winFormsHost" >
+            <wfr:ReportViewer x:Name="rptViewer" ProcessingMode="Remote" Visible="True" />
+        </wfi:WindowsFormsHost>
+    </Grid>
+</Window>
